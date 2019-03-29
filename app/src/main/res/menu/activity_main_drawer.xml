@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nickname"
+            android:icon="@drawable/user"
+            android:title="000님" />
+
+        <item
+            android:id="@+id/cha"
+            android:icon="@drawable/cha"
+            android:title="챌린지" />
+        <item
+            android:id="@+id/chatbot"
+            android:icon="@drawable/contact"
+            android:title="소심이챗봇" />
+        <item
+            android:id="@+id/book"
+            android:icon="@drawable/book"
+            android:title="소심시나리오" />
+        <item
+            android:id="@+id/quiz"
+            android:icon="@drawable/question"
+            android:title="소심퀴즈" />
+
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="설정" />
+
+        <item
+        android:id="@+id/logout"
+        android:icon="@drawable/logout"
+        android:title="로그아웃" />
+
+   </group>
+
+
+
+</menu>
