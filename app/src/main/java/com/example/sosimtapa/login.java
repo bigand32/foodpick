@@ -23,7 +23,8 @@ public class login extends Activity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(),test.class);
+                Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+
                 startActivity(intent2);
             }
         });
