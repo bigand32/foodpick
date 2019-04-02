@@ -31,6 +31,9 @@
         <activity
             android:name=".newsign"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".pid"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 
