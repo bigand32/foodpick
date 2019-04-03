@@ -34,7 +34,15 @@
         <activity
             android:name=".pid"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".write"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
+
+
+
+
