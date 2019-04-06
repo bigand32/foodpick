@@ -11,7 +11,7 @@ public class login extends Activity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.people);
-        Button button=(Button) findViewById(R.id.btn_newsign);
+        Button button=(Button) findViewById(R.id.btn_signup);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

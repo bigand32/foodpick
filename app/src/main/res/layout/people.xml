@@ -19,7 +19,7 @@
         />
 
     <EditText
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -28,6 +28,7 @@
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
 
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
@@ -37,13 +38,14 @@
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText"
         android:layout_alignStart="@+id/editText"
         android:layout_alignLeft="@+id/editText"
         android:layout_alignEnd="@+id/editText"
         android:layout_alignRight="@+id/editText"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:ems="10"
