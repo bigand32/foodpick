@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.TextView;
 
 import java.io.InputStream;
 
@@ -31,6 +30,16 @@ public class write extends Activity {
                // tv.setText("rating : " + rating);
             }
         });
+
+        Button button1=(Button) findViewById(R.id.location);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              Intent intent = new Intent(getApplicationContext(),AutoCompleteActivity.class);
+             startActivity(intent);
+            }
+        });
+
         imageView = (ImageView)findViewById(R.id.image);
 
         button = (Button)findViewById(R.id.button);

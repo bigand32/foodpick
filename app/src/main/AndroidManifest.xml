@@ -37,7 +37,25 @@
         <activity
             android:name=".write"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".AutoCompleteActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <!-- google place api -->
 
+        <meta-data
+
+            android:name="com.google.android.geo.API_KEY"
+
+            android:value="AIzaSyCyGw1DIOuQsK3CMHsqQl1W7AKeFWIfA58" />
+
+
+
+        <!-- google service -->
+
+        <meta-data
+
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

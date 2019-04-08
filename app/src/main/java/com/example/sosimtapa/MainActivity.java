@@ -1,16 +1,7 @@
 package com.example.sosimtapa;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.text.Editable;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,20 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
+import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,7 +25,7 @@ public class MainActivity extends AppCompatActivity
     private HashMap<String,String> InputData1 = new HashMap<>();
    private HashMap<String,String> InputData2 = new HashMap<>();
    private ListView listView;
-
+    private TextView tv_result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,19 +46,54 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Button button=(Button) findViewById(R.id.start);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        init();
+        Button button1=(Button) findViewById(R.id.imageView);
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),pid.class);
                 startActivity(intent);
             }
         });
+        Button button=(Button) findViewById(R.id.start);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+                String food="";
+                Random dice = new Random();
+                int result = dice.nextInt(6) + 1;
+                if(result==1){
+                    food="떡볶이";
+                }else if(result==2){
+                   food="삼겹살";
+                }
+                else if(result==3){
+                    food="순댓국";
+                }
+                else if(result==4){
+                     food="김치찌개";
+                }
+                else if(result==5){
+                    food="제육볶음";
+                }
+                else if(result==6){
+                    food="카레";
+                }
 
-
-
-
+                // TextView에 표시한다.
+                tv_result.setText(String.valueOf(food));
+            }
+        });
     }
+        public void init() {
+            tv_result = (TextView) findViewById(R.id.tv_st_reason);
+
+        }
+
+
+
 
     @Override
     public void onBackPressed() {
