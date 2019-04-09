@@ -13,21 +13,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="350dp"
-        android:layout_marginBottom="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+
         android:layout_gravity="center_horizontal"
        >
 
-        <Button
+        <ImageView
             android:id="@+id/imageView"
             android:layout_width="350dp"
-            android:layout_height="350dp"
+            android:layout_height="310dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/map"
 
             android:contentDescription="@string/nav_header_desc"
-            ></Button>
+            app:srcCompat="@drawable/map"></ImageView>
     </LinearLayout>
     <LinearLayout
         android:layout_gravity="center_horizontal"
