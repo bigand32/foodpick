@@ -47,7 +47,7 @@ public class pid extends Activity {
 
         spinner1 = (Spinner) findViewById(R.id.spinner2);
         // spinner.setOnItemSelectedListener(this);
-        item = new String[]{"강서구", "관악구", "동작구", "영등포구", "성북구"};
+        item = new String[]{"여의도", "신림", "서울대입구", "영등포구", "성북구"};
 
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, item);
@@ -57,10 +57,12 @@ public class pid extends Activity {
 
         GridView gridView = (GridView) findViewById(R.id.gridview);
         gridView.setAdapter((ListAdapter) new ImageAdapter(this));
+
+
     }
     public class ImageAdapter extends BaseAdapter {
         private Context mContext;
-        private Integer[] mThumblds= {R.drawable.b,R.drawable.b,R.drawable.b,R.drawable.b,R.drawable.b,R.drawable.b,R.drawable.b,R.drawable.b,R.drawable.b,R.drawable.b};
+        private Integer[] mThumblds= {R.drawable.b,R.drawable.c,R.drawable.h,R.drawable.f,R.drawable.d,R.drawable.e,R.drawable.b,R.drawable.c,R.drawable.h,R.drawable.e};
         public ImageAdapter(Context c) {
             mContext = c;
         }
@@ -78,7 +80,7 @@ public class pid extends Activity {
             ImageView imageView;
             if (convertView == null) {
                 imageView = new ImageView(mContext);
-                imageView.setLayoutParams(new GridView.LayoutParams(350,350));
+                imageView.setLayoutParams(new GridView.LayoutParams(250,250));
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
             }else {

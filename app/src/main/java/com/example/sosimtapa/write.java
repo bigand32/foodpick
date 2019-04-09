@@ -39,6 +39,14 @@ public class write extends Activity {
              startActivity(intent);
             }
         });
+        Button button2=(Button) findViewById(R.id.ok);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),pid.class);
+                startActivity(intent);
+            }
+        });
 
         imageView = (ImageView)findViewById(R.id.image);
 
