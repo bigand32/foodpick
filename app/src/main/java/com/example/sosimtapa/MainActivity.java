@@ -2,8 +2,12 @@ package com.example.sosimtapa;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,17 +25,43 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    public ArrayList<HashMap<String,String>> Data = new ArrayList<HashMap<String, String>>();
-    private HashMap<String,String> InputData1 = new HashMap<>();
-    private HashMap<String,String> InputData2 = new HashMap<>();
-    private ListView listView;
-    private TextView tv_result;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tabLayout = (TabLayout)findViewById(R.id.tabLayout);
+        tabLayout.addTab(tabLayout.newTab().setText("Calender"));
+        tabLayout.addTab(tabLayout.newTab().setText("Graph"));
+        tabLayout.addTab(tabLayout.newTab().setText("Menu"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        //Initializing ViewPager
+        viewPager = (ViewPager)findViewById(R.id.viewPager);
 
-        ;
+        //Creating adapter
+        TabPagerAdapter pagerAdapter = new TabPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        //Set TabSelectedListener
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -47,50 +77,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        init();
-        Button button1=(Button) findViewById(R.id.imageView);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),pid.class);
-                startActivity(intent);
-            }
-        });
-        Button button=(Button) findViewById(R.id.start);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //
-                String food="";
-                Random dice = new Random();
-                int result = dice.nextInt(6) + 1;
-                if(result==1){
-                    food="떡볶이";
-                }else if(result==2){
-                    food="삼겹살";
-                }
-                else if(result==3){
-                    food="순댓국";
-                }
-                else if(result==4){
-                    food="김치찌개";
-                }
-                else if(result==5){
-                    food="제육볶음";
-                }
-                else if(result==6){
-                    food="카레";
-                }
 
-                // TextView에 표시한다.
-                tv_result.setText(String.valueOf(food));
-            }
-        });
-    }
-    public void init() {
-        tv_result = (TextView) findViewById(R.id.tv_st_reason);
 
     }
+
 
 
 
