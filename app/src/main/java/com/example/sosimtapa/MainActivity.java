@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("HOME"));
-        tabLayout.addTab(tabLayout.newTab().setText("GRAPH"));
         tabLayout.addTab(tabLayout.newTab().setText("PICKDOG"));
+        tabLayout.addTab(tabLayout.newTab().setText("HOME"));
+        tabLayout.addTab(tabLayout.newTab().setText("PICK"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         //Initializing ViewPager
         viewPager = (ViewPager)findViewById(R.id.viewPager);

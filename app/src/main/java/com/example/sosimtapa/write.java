@@ -35,7 +35,7 @@ public class write extends Activity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              Intent intent = new Intent(getApplicationContext(),AutoCompleteActivity.class);
+              Intent intent = new Intent(getApplicationContext(),SearchActivity.class);
              startActivity(intent);
             }
         });
