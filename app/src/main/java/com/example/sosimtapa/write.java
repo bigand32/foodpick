@@ -10,11 +10,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.InputStream;
 
 public class write extends Activity {
     ImageView imageView;
     Button button;
+    RatingBar rb;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -27,7 +36,7 @@ public class write extends Activity {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating,
                                         boolean fromUser) {
-               // tv.setText("rating : " + rating);
+                // tv.setText("rating : " + rating);
             }
         });
 
@@ -35,8 +44,8 @@ public class write extends Activity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              Intent intent = new Intent(getApplicationContext(),SearchActivity.class);
-             startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(),AutoCompleteActivity.class);
+                startActivity(intent);
             }
         });
         Button button2=(Button) findViewById(R.id.ok);
@@ -60,7 +69,17 @@ public class write extends Activity {
                 startActivityForResult(intent, 1);
             }
         });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("message");
+
+                myRef.setValue("Hello, World!");
+            }
+        });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to

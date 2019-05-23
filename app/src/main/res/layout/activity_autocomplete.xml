@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:padding="8dp"
+    >
 
-
-    <fragment
-        android:id="@+id/fragment_autocomplete"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
-        />
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <fragment
+                android:id="@+id/places_autocomplete_fragment"
+                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtSelectedPlaceName"
-        android:layout_margin="20dp"
-        android:padding="15dp"
-        android:hint="입력해주세요"
-        android:textSize="@dimen/place_autocomplete_prediction_primary_text"/>
+    </ScrollView>
+
 </RelativeLayout>

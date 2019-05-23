@@ -71,7 +71,7 @@
             android:layout_marginTop="30dp">
 
             <EditText
-                android:background="@drawable/xml_border"
+                android:background="@drawable/xml_border1"
                 android:id="@+id/menu"
                 android:textSize="15dp"
                 android:layout_width="330dp"
@@ -95,7 +95,7 @@
             android:layout_width="330dp"
             android:layout_gravity="center_horizontal"
             android:layout_height="150dp"
-            android:background="@drawable/xml_border"
+            android:background="@drawable/xml_border1"
            />
 
     </LinearLayout>
@@ -114,9 +114,9 @@
             android:layout_below="@+id/image"
             android:layout_centerHorizontal="true"
             android:width="90dp"
-            android:background="@drawable/xml_border"
+            android:background="#ff6000"
             android:text="사진 추가하기"
-            android:textColor="#FF6000"
+            android:textColor="#ffffff"
             android:textSize="10dp" />
         <ImageView
             android:id="@+id/image"
@@ -134,9 +134,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-            android:background="@drawable/xml_border"
+            android:background="#ff6000"
             android:layout_gravity="center_horizontal"
-            android:textColor="#FF6000"
+            android:textColor="#ffffff"
        />
     </LinearLayout>
 </ScrollView>

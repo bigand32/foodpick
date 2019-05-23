@@ -4,36 +4,36 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
 
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import android.widget.Toast;
+
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainTabFragment2 extends Fragment {
-    TextView selectedText;
-    Spinner spinner;
-    Spinner spinner1;
-    String[] item;
+    PlacesClient placesClient1;
+    List<Place.Field> placeFields1= Arrays.asList(Place.Field.ID,
+            Place.Field.NAME,
+            Place.Field.ADDRESS);
+    AutocompleteSupportFragment places_fragment1;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -46,67 +46,26 @@ public class MainTabFragment2 extends Fragment {
                 startActivity(intent);
             }
         });
-        spinner = (Spinner) view2.findViewById(R.id.spinner1);
-        // spinner.setOnItemSelectedListener(this);
-        item = new String[]{"강남구", "관악구", "동작구", "영등포구", "성북구"};
+        places_fragment1 = (AutocompleteSupportFragment)getChildFragmentManager()
+                .findFragmentById(R.id.places_autocomplete_fragment1);
+        places_fragment1.setPlaceFields(placeFields1);
+        places_fragment1.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                Toast.makeText(getActivity(), ""+place.getName(), Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onError(@NonNull Status status) {
+                Toast.makeText(getActivity(),""+status.getStatusMessage(), Toast.LENGTH_SHORT).show();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(adapter);
-
-        spinner1 = (Spinner) view2.findViewById(R.id.spinner2);
-        // spinner.setOnItemSelectedListener(this);
-        item = new String[]{"역삼동", "신림", "서울대입구", "영등포구", "성북구"};
-
-
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner1.setAdapter(adapter1);
-
-        GridView gridView = (GridView) view2.findViewById(R.id.gridview);
-        gridView.setAdapter((ListAdapter) new ImageAdapter(getActivity()));
-
+            }
+        });
+        Places.initialize(getActivity(),getString(R.string.place_api_key));
+        placesClient1 = Places.createClient(getActivity());
 
         return view2;
     }
-    public class ImageAdapter extends BaseAdapter {
-        private Context mContext;
-        private Integer[] mThumblds = {R.drawable.b, R.drawable.c, R.drawable.h, R.drawable.f, R.drawable.d, R.drawable.e, R.drawable.b, R.drawable.c, R.drawable.h, R.drawable.e};
-
-        public ImageAdapter(Context c) {
-            mContext = c;
-        }
-
-        public int getCount() {
-            return mThumblds.length;
-        }
-
-        public Object getItem(int position) {
-            return null;
-        }
-
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        public View getView(int position, View convertView,
-                            ViewGroup parent) {
-            ImageView imageView;
-            if (convertView == null) {
-                imageView = new ImageView(mContext);
-                imageView.setLayoutParams(new GridView.LayoutParams(250, 250));
-                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
-            } else {
-                imageView = (ImageView) convertView;
-            }
-            imageView.setImageResource(mThumblds[position]);
-            return imageView;
-        }
 
 
-    }
 }
