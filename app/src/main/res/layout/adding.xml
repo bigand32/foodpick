@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:id="@+id/lo"
                 android:text="위치 추가"
                 android:textSize="10dp"/>
 
@@ -90,7 +90,7 @@
         android:layout_marginLeft="10dp">
 
         <EditText
-
+            android:id="@+id/write"
             android:layout_marginTop="5dp"
             android:layout_width="330dp"
             android:layout_gravity="center_horizontal"
