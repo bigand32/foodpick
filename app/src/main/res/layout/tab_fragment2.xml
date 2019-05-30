@@ -2,39 +2,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/title_no1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_marginTop="150dp"
-    android:padding="8dp"
+
     >
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+    <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+        android:padding="8dp"
+          android:background="@drawable/title_no1">
 
             <fragment
+                android:layout_marginTop="50dp"
                 android:id="@+id/places_autocomplete_fragment1"
                 android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
                 android:layout_width="280dp"
+
                 android:layout_height="wrap_content"/>
 
             <Button
                 android:id="@+id/add"
-                android:layout_marginLeft="20dp"
+                android:layout_marginTop="58dp"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
 
                 android:background="@drawable/add" />
+</LinearLayout>
 
-        </LinearLayout>
 
-    </ScrollView>
+
 
 </RelativeLayout>

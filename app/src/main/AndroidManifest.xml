@@ -47,16 +47,14 @@
         </activity>
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".newsign"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".pid"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".write"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -16,6 +16,8 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
@@ -53,6 +55,7 @@ public class MainTabFragment2 extends Fragment {
                 startActivity(intent);
             }
         });
+       // ImageView searchIcon = (ImageView)((LinearLayout)places_fragment1.getView()).getChildAt(0);
         places_fragment1 = (AutocompleteSupportFragment)getChildFragmentManager()
                 .findFragmentById(R.id.places_autocomplete_fragment1);
         places_fragment1.setPlaceFields(placeFields1);

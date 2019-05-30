@@ -58,12 +58,14 @@ public class write extends Activity {
     private Uri filePath;
     Uri downloadUri;
     String url;
-   String p;
+    String p;
     StorageReference storageRef;
     String name1;
     String address1;
+    String menu;
+    String s;
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adding);
         database = FirebaseDatabase.getInstance();
@@ -73,7 +75,7 @@ public class write extends Activity {
         // 2. CRUD 작업의 기준이 되는 노드를 레퍼러느로 가져온다.
         bbsRef = database.getReference("write");
         //final TextView tv = (TextView) findViewById(R.id.textView1); //별점 몇점인지 나타낼때사용
-        rb =(RatingBar)findViewById(R.id.ratingBar1);
+        rb = (RatingBar) findViewById(R.id.ratingBar1);
 
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -83,15 +85,15 @@ public class write extends Activity {
             }
         });
 
-        Button button1=(Button) findViewById(R.id.location);
+        Button button1 = (Button) findViewById(R.id.location);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),AutoCompleteActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AutoCompleteActivity.class);
                 startActivity(intent);
             }
         });
-        button2=(Button) findViewById(R.id.ok);
+        button2 = (Button) findViewById(R.id.ok);
       /*  button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,9 +102,9 @@ public class write extends Activity {
             }
         });*/
 
-        imageView = (ImageView)findViewById(R.id.image);
+        imageView = (ImageView) findViewById(R.id.image);
 
-        button = (Button)findViewById(R.id.button);
+        button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,27 +115,26 @@ public class write extends Activity {
             }
         });
 
-         editText = (EditText) findViewById(R.id.menu);
-        wr= (EditText) findViewById(R.id.write);
+        editText = (EditText) findViewById(R.id.menu);
+        wr = (EditText) findViewById(R.id.write);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String menu = editText.getText().toString();
-                String cotent =wr.getText().toString();
+                menu = editText.getText().toString();
+                String cotent = wr.getText().toString();
                 String key = bbsRef.push().getKey();
                 float rating = rb.getRating();
-                String star=String.valueOf(rating);
-
+                String star = String.valueOf(rating);
 
 
                 uploadFile();
                 // 6.2 입력될 키, 값 세트 (레코드)를 생성.
-                Map<String, String > postValues = new HashMap<>();
+                Map<String, String> postValues = new HashMap<>();
                 postValues.put("title", menu);
                 postValues.put("content", cotent);
-                postValues.put("star",star);
-                postValues.put("adress",address1);
-                postValues.put("name",name1);
+                postValues.put("star", star);
+                postValues.put("adress", address1);
+                postValues.put("name", name1);
 
                 DatabaseReference keyRef = bbsRef.child(key);
                 keyRef.setValue(postValues);
@@ -141,7 +142,7 @@ public class write extends Activity {
                 editText.setText("");
 
 
-               // startActivity(new Intent(write.this, MainTabFragment2.class));
+                // startActivity(new Intent(write.this, MainTabFragment2.class));
             }
         });
 
@@ -168,6 +169,7 @@ public class write extends Activity {
             }
         }
     }
+
     private void uploadFile() {
         //업로드할 파일이 있으면 수행
         if (filePath != null) {
@@ -183,12 +185,12 @@ public class write extends Activity {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMHH_mmss");
             Date now = new Date();
             String filename = formatter.format(now) + ".png";
-            Intent intent=getIntent();
-            String name=intent.getStringExtra("name1");
-            String address=intent.getStringExtra("address1");
+            Intent intent = getIntent();
+            String name = intent.getStringExtra("name1");
+            String address = intent.getStringExtra("address1");
             //storage 주소와 폴더 파일명을 지정해 준다.
-            storageRef = storage.getReferenceFromUrl("gs://pickfood-b8be9.appspot.com").child("images/" + address+formatter.format(now));
-            img=String.valueOf(storageRef.getDownloadUrl());
+            storageRef = storage.getReferenceFromUrl("gs://pickfood-b8be9.appspot.com").child("images/" + address + formatter.format(now));
+            img = String.valueOf(storageRef.getDownloadUrl());
             //올라가거라...
             UploadTask uploadTask = storageRef.putFile(filePath);
             uploadTask
@@ -216,7 +218,8 @@ public class write extends Activity {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             @SuppressWarnings("VisibleForTests") //이걸 넣어 줘야 아랫줄에 에러가 사라진다. 넌 누구냐?
-                                    double progress = (100 * taskSnapshot.getBytesTransferred()) /  taskSnapshot.getTotalByteCount();
+                                    double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+
                             //dialog에 진행률을 퍼센트로 출력해 준다
                             progressDialog.setMessage("Uploaded " + ((int) progress) + "% ...");
                         }
@@ -236,14 +239,16 @@ public class write extends Activity {
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()) {
                         downloadUri = task.getResult();
-                        url=String.valueOf(downloadUri);
-                      imge = database.getReference("img");
+                        url = downloadUri.toString();
+
+                        imge = database.getReference("img");
                         String key = imge.push().getKey();
-                        Map<String, String > postValues = new HashMap<>();
-                        postValues.put("uri",url);
+                        Map<String, String> postValues = new HashMap<>();
+                        postValues.put("name",menu);
+                        postValues.put("uri", url);
                         DatabaseReference keyRef = imge.child(key);
                         keyRef.setValue(postValues);
-
+                        Upload upload = new Upload(editText.getText().toString(), url);
                     } else {
                         // Handle failures
                         // ...

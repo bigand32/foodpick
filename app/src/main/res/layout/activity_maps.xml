@@ -1,42 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="fill_parent"
-android:layout_height="match_parent"
->
-<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    >
 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    <LinearLayout
 
-
-
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/map"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_id"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
 
-        class="com.google.android.gms.maps.SupportMapFragment" />
-    <!--<GridView-->
-        <!--android:id="@+id/gridview"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:columnWidth="200dp"-->
-        <!--android:gravity="center"-->
-        <!--android:numColumns="3" />-->
-    <!--<ImageView-->
-        <!--android:id="@+id/imageView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="9"-->
-        <!--android:contentDescription="no image.." />-->
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+            />
 
-</LinearLayout>
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/map"
+
+            class="com.google.android.gms.maps.SupportMapFragment" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/menu"
+
+                android:src="@drawable/menu"
+
+                android:layout_weight="1"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/list"
+                android:src="@drawable/list"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
 
 </RelativeLayout>
