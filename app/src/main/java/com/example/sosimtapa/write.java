@@ -8,13 +8,11 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -22,13 +20,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -39,8 +32,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import static android.support.constraint.StateSet.TAG;
 
 public class write extends Activity {
     ImageView imageView;
@@ -62,7 +53,7 @@ public class write extends Activity {
     StorageReference storageRef;
     String name1;
     String address1;
-    String menu;
+    String menu,content;
     String s;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +112,7 @@ public class write extends Activity {
             @Override
             public void onClick(View view) {
                 menu = editText.getText().toString();
-                String cotent = wr.getText().toString();
+                content = wr.getText().toString();
                 String key = bbsRef.push().getKey();
                 float rating = rb.getRating();
                 String star = String.valueOf(rating);
@@ -131,12 +122,12 @@ public class write extends Activity {
                 // 6.2 입력될 키, 값 세트 (레코드)를 생성.
                 Map<String, String> postValues = new HashMap<>();
                 postValues.put("title", menu);
-                postValues.put("content", cotent);
+                postValues.put("content", content);
                 postValues.put("star", star);
                 postValues.put("adress", address1);
                 postValues.put("name", name1);
 
-                DatabaseReference keyRef = bbsRef.child(key);
+                DatabaseReference keyRef = bbsRef.child(content);
                 keyRef.setValue(postValues);
                 wr.setText("");
                 editText.setText("");
@@ -246,7 +237,8 @@ public class write extends Activity {
                         Map<String, String> postValues = new HashMap<>();
                         postValues.put("name",menu);
                         postValues.put("uri", url);
-                        DatabaseReference keyRef = imge.child(key);
+                        postValues.put("content", content);
+                        DatabaseReference keyRef = imge.child(content);
                         keyRef.setValue(postValues);
                         Upload upload = new Upload(editText.getText().toString(), url);
                     } else {

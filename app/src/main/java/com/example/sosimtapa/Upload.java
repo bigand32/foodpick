@@ -11,6 +11,16 @@ public class Upload{
     public String name;
     public String uri;
 
+    public String getCotent() {
+        return cotent;
+    }
+
+    public void setCotent(String cotent) {
+        this.cotent = cotent;
+    }
+
+    public String cotent;
+
     // Default constructor required for calls to
     // DataSnapshot.getValue(User.class)
     public Upload() {
@@ -28,4 +38,5 @@ public class Upload{
     public String getUrl() {
         return uri;
     }
+
 }
