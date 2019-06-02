@@ -37,17 +37,19 @@ import java.util.List;
 import java.util.Map;
 
 public class MainTabFragment2 extends Fragment {
-
+    String mValue;
     PlacesClient placesClient1;
     List<Place.Field> placeFields1= Arrays.asList(Place.Field.ID,
             Place.Field.NAME,
             Place.Field.ADDRESS,Place.Field.LAT_LNG);
     AutocompleteSupportFragment places_fragment1;
+    String name;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view2= inflater.inflate(R.layout.tab_fragment2,container,false);
         Button button=(Button) view2.findViewById(R.id.add);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +57,7 @@ public class MainTabFragment2 extends Fragment {
                 startActivity(intent);
             }
         });
+
        // ImageView searchIcon = (ImageView)((LinearLayout)places_fragment1.getView()).getChildAt(0);
         places_fragment1 = (AutocompleteSupportFragment)getChildFragmentManager()
                 .findFragmentById(R.id.places_autocomplete_fragment1);

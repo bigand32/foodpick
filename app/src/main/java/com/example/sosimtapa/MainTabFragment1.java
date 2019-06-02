@@ -1,6 +1,9 @@
 package com.example.sosimtapa;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -30,15 +33,17 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+
 public class MainTabFragment1 extends Fragment {
     TextToSpeech tts;
     private Button button;
-
+    View view2;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-       View view2=inflater.inflate(R.layout.tab_fragment1,container,false);
+       view2=inflater.inflate(R.layout.tab_fragment1,container,false);
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.RECORD_AUDIO}, 5);
             toast("순순히 권한을 넘기지 않으면, 음성 인식 기능을 사용할 수 없다!");
@@ -150,7 +155,7 @@ public class MainTabFragment1 extends Fragment {
                 tts.speak("안녕하세요? 좋은 하루에요", TextToSpeech.QUEUE_FLUSH, null);
             }
             else if(input.equals("날씨에 따라 메뉴 추천해 줘")){
-                txt.append("     [픽푸드] 네. 오늘 날씨는 어떤가요?.\n");
+                txt.append("     [픽푸드] 네. 오늘 날씨는 어떤가요?\n");
                 tts.speak(" 네. 오늘 날씨는 어떤가요?", TextToSpeech.QUEUE_FLUSH, null);
             }
             else if(input.equals("종류에 따라 메뉴 추천해 줘")){
@@ -160,7 +165,37 @@ public class MainTabFragment1 extends Fragment {
             else if(input.equals("흐림")){
                 txt.append("     [픽푸드] 그럼 비 올때 생각나는 파전이 좋을 것 같아요.\n");
                 tts.speak(" 그럼 비 올때 생각나는 파전이 좋을 것 같아요.", TextToSpeech.QUEUE_FLUSH, null);
-            }
+                Context mContext = view2.getContext();
+                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+                View layout = inflater.inflate(R.layout.popup, (ViewGroup) view2.findViewById(R.id.popup));
+                AlertDialog.Builder aDialog = new AlertDialog.Builder(view2.getContext());
+                aDialog.setView(layout); //dialog.xml 파일을 뷰로 셋팅 //그냥 닫기버튼을 위한 부분
+
+                aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                aDialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        String name="체부동잔치집";
+                        Double lat,lon;
+                        String address="대한민국 서울특별시 종로구 내자동 12";
+                        lat=37.5762932;
+                        lon=126.9694476;
+                        Intent intent = new Intent(getActivity(),MapsActivity.class);
+                        intent.putExtra("latitude",lat);
+                        intent.putExtra("longitude",lon);
+                        intent.putExtra("name",name);
+                        intent.putExtra("address",address);
+                        startActivity(intent);
+                    }
+                });
+                    AlertDialog ad = aDialog.create();
+
+                    ad.show();//보여줌!
+
+                }
 
             else if(input.equals("일식")){
                 txt.append("      [픽푸드] 튀김,덮밥,면 중에 선택해주세요.\n");

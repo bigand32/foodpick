@@ -5,15 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
-            android:text="REVIEW"
+            android:text="맛집추천"
             android:textSize="20sp"
             android:textColor="#fff"
             android:gravity="center"
@@ -28,16 +25,17 @@
             android:textSize="22sp"
             android:id="@+id/text1"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="안녕내이름은백민지"
+            android:layout_marginBottom="20dp"
+            android:text="체부동잔치집"
             />
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="250dp"
             android:layout_gravity="center"
-            android:layout_height="250dp"
+            android:layout_height="150dp"
             android:layout_marginBottom="22dp"
-           />
+            android:src="@drawable/pajun"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,18 +43,29 @@
             android:layout_gravity="center"
             android:textSize="18sp"
             android:id="@+id/text2"
-            android:text="안녕내이름은백민지"
+            android:text="Tel. 02-730-5420"
             />
-
-        <RatingBar
-            android:layout_gravity="center"
-            android:id="@+id/ratingBar1"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:isIndicator="false"
-            android:numStars="5"
-            android:rating="0"
-            android:stepSize="0.5"
-            android:max="5" />
+            android:textColor="#B4B4B4"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:id="@+id/text3"
+            android:text="서울 종로구 자하문로1길 16"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:id="@+id/text4"
+            android:text="으로 이동하시겠습니까?"
+            />
+
+
+
     </LinearLayout>
 </ScrollView>

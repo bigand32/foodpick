@@ -40,6 +40,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
@@ -117,8 +118,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //mRecyclerView.setHasFixedSize(true);
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mRef = mFirebaseDatabase.getReference().child("img");
-        mRef.addValueEventListener(new ValueEventListener() {
+        mRef = mFirebaseDatabase.getReference();
+        Query query = mRef.child("img").orderByChild("address").equalTo(address);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 //dismissing the progress dialog

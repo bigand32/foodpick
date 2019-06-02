@@ -10,25 +10,21 @@ public class Upload{
 
     public String name;
     public String uri;
+    public String content;
 
-    public String getCotent() {
-        return cotent;
-    }
 
-    public void setCotent(String cotent) {
-        this.cotent = cotent;
-    }
 
-    public String cotent;
+
 
     // Default constructor required for calls to
     // DataSnapshot.getValue(User.class)
     public Upload() {
     }
 
-    public Upload(String name, String url) {
+    public Upload(String name, String url,String content) {
         this.name = name;
         this.uri= url;
+        this.content=content;
     }
 
     public String getName() {
@@ -38,5 +34,11 @@ public class Upload{
     public String getUrl() {
         return uri;
     }
+    public String getContent() {
+        return content;
+    }
 
+    public void setContent(String cotent) {
+        this.content = cotent;
+    }
 }

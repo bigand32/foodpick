@@ -55,6 +55,7 @@ public class write extends Activity {
     String address1;
     String menu,content;
     String s;
+    String star;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +116,7 @@ public class write extends Activity {
                 content = wr.getText().toString();
                 String key = bbsRef.push().getKey();
                 float rating = rb.getRating();
-                String star = String.valueOf(rating);
+                star = String.valueOf(rating);
 
 
                 uploadFile();
@@ -178,7 +179,7 @@ public class write extends Activity {
             String filename = formatter.format(now) + ".png";
             Intent intent = getIntent();
             String name = intent.getStringExtra("name1");
-            String address = intent.getStringExtra("address1");
+            final String address = intent.getStringExtra("address1");
             //storage 주소와 폴더 파일명을 지정해 준다.
             storageRef = storage.getReferenceFromUrl("gs://pickfood-b8be9.appspot.com").child("images/" + address + formatter.format(now));
             img = String.valueOf(storageRef.getDownloadUrl());
@@ -238,9 +239,11 @@ public class write extends Activity {
                         postValues.put("name",menu);
                         postValues.put("uri", url);
                         postValues.put("content", content);
+                        postValues.put("star",star);
+                        postValues.put("address",address1);
                         DatabaseReference keyRef = imge.child(content);
                         keyRef.setValue(postValues);
-                        Upload upload = new Upload(editText.getText().toString(), url);
+                        Upload upload = new Upload(editText.getText().toString(), url,content);
                     } else {
                         // Handle failures
                         // ...
