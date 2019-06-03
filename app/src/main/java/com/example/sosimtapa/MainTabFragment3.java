@@ -1,12 +1,9 @@
 package com.example.sosimtapa;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,17 +22,25 @@ public class MainTabFragment3 extends Fragment {
     private ListView listView;
     private TextView tv_result;
     private TextView textView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         View view1=inflater.inflate(R.layout.tab_fragment3,container,false);
         tv_result = (TextView) view1. findViewById(R.id.tv_st_reason);
         textView = (TextView) view1. findViewById(R.id.font1);
+        Button button33=(Button) view1.findViewById(R.id.btn_customp);
+        button33.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),CustomActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
-
-
-        Button button=(Button) view1. findViewById(R.id.start);
+        Button button=(Button) view1.findViewById(R.id.start);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +70,7 @@ public class MainTabFragment3 extends Fragment {
                 tv_result.setText(String.valueOf(food));
             }
         });
-        Button button1=(Button) view1. findViewById(R.id.start2);
+        Button button1=(Button) view1.findViewById(R.id.start2);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +100,7 @@ public class MainTabFragment3 extends Fragment {
                 tv_result.setText(String.valueOf(food));
             }
         });
-        Button button2=(Button) view1. findViewById(R.id.start3);
+        Button button2=(Button) view1.findViewById(R.id.start3);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,6 +130,7 @@ public class MainTabFragment3 extends Fragment {
                 tv_result.setText(String.valueOf(food));
             }
         });
+
 
         return view1;
     }
