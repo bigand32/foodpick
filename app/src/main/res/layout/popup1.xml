@@ -1,0 +1,71 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/popup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:text="맛집추천"
+            android:textSize="20sp"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:background="#ff6000"
+            android:layout_width="match_parent"
+            android:layout_height="53dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:layout_gravity="center"
+            android:textSize="22sp"
+            android:id="@+id/text1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="크레이지카츠"
+            />
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="250dp"
+            android:layout_gravity="center"
+            android:layout_height="150dp"
+            android:layout_marginBottom="22dp"
+            android:src="@drawable/crazy"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#B4B4B4"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:id="@+id/text2"
+            android:text="Tel. 070-8621-7219"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#B4B4B4"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:id="@+id/text3"
+            android:text="서울 마포구 포은로2나길 44"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:id="@+id/text4"
+            android:text="으로 이동하시겠습니까?"
+            />
+
+
+
+    </LinearLayout>
+</ScrollView>

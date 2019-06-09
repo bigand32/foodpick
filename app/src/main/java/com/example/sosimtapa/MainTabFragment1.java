@@ -12,19 +12,14 @@ import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RadioGroup;
-import android.widget.Toast;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -204,6 +199,35 @@ public class MainTabFragment1 extends Fragment {
             else if(input.equals("튀김")){
                 txt.append("     [픽푸드] 돈까스 추천해요.\n");
                 tts.speak(" 돈까스 추천해요.", TextToSpeech.QUEUE_FLUSH, null);
+                Context mContext = view2.getContext();
+                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+                View layout = inflater.inflate(R.layout.popup1, (ViewGroup) view2.findViewById(R.id.popup));
+                AlertDialog.Builder aDialog = new AlertDialog.Builder(view2.getContext());
+                aDialog.setView(layout); //dialog.xml 파일을 뷰로 셋팅 //그냥 닫기버튼을 위한 부분
+
+                aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                aDialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        String name="크레이지카츠";
+                        Double lat,lon;
+                        String address="대한민국 서울특별시 마포구 합정동 포은로2나길 44";
+                        lat=37.5503725;
+                        lon=126.9075313;
+                        Intent intent = new Intent(getActivity(),MapsActivity.class);
+                        intent.putExtra("latitude",lat);
+                        intent.putExtra("longitude",lon);
+                        intent.putExtra("name",name);
+                        intent.putExtra("address",address);
+                        startActivity(intent);
+                    }
+                });
+                AlertDialog ad = aDialog.create();
+
+                ad.show();//보여줌!
             }
 
             else if(input.equals("종료")){
