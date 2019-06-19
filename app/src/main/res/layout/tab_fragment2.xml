@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
         android:padding="8dp"
-          android:background="@drawable/title_no1">
+          android:background="#FFFFFF">
 
             <fragment
                 android:layout_marginTop="50dp"
@@ -30,7 +30,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
 
-                android:background="@drawable/add" />
+                android:background="@drawable/ikon" />
 </LinearLayout>
 
 

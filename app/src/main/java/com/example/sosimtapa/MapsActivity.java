@@ -79,7 +79,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar_id);
-        mToolbar.setTitle("NEWPID");
+        mToolbar.setTitle("피드");
         a=(ImageButton)findViewById(R.id.menu);
         b=(ImageButton)findViewById(R.id.list);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);

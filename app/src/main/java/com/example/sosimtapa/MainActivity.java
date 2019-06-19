@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -28,15 +30,21 @@ public class MainActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("PICKDOG"));
-        tabLayout.addTab(tabLayout.newTab().setText("HOME"));
-        tabLayout.addTab(tabLayout.newTab().setText("PICK"));
+        tabLayout.addTab(tabLayout.newTab().setText("음성인식"));
+        tabLayout.addTab(tabLayout.newTab().setText("검색"));
+        tabLayout.addTab(tabLayout.newTab().setText("룰렛"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+
+
         //Initializing ViewPager
         viewPager = (ViewPager)findViewById(R.id.viewPager);
 
@@ -75,6 +83,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
 
 
 
