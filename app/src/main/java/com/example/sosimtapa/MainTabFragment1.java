@@ -25,6 +25,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.skyfishjy.library.RippleBackground;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -34,7 +36,7 @@ public class MainTabFragment1 extends Fragment {
     TextToSpeech tts;
     private Button button;
     View view2;
-
+    Button input;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -54,8 +56,8 @@ public class MainTabFragment1 extends Fragment {
 
         LinearLayout layoutin=new LinearLayout((getActivity()));
         layoutin.setOrientation(LinearLayout.VERTICAL);
-
-        layoutin.setPadding(290,200,290,70);
+        final RippleBackground rippleBackground=(RippleBackground)view2.findViewById(R.id.content);
+        layoutin.setPadding(240,200,240,70);
         layout.addView(layoutin);
 
         ScrollView scroll = new ScrollView(getActivity());
@@ -67,23 +69,27 @@ public class MainTabFragment1 extends Fragment {
                 tts.setLanguage(Locale.KOREAN);
             }
         });
-        Button input = new Button(getActivity());
+        input = new Button(getActivity());
 
-        input.setBackgroundResource(R.drawable.logo_noback1);
+        input.setBackgroundResource(R.drawable.speek);
+
 
         input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inputVoice(txt);
+                rippleBackground.startRippleAnimation();
             }
         });
         layoutin.addView(input);
         layout.addView(txt);
 
+
         return scroll;
     }
     public void inputVoice(final TextView txt) {
         try {
+
             Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
             intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getActivity().getPackageName());
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR");
