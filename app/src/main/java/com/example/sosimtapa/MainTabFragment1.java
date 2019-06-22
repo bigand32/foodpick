@@ -25,7 +25,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.skyfishjy.library.RippleBackground;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -56,7 +55,7 @@ public class MainTabFragment1 extends Fragment {
 
         LinearLayout layoutin=new LinearLayout((getActivity()));
         layoutin.setOrientation(LinearLayout.VERTICAL);
-        final RippleBackground rippleBackground=(RippleBackground)view2.findViewById(R.id.content);
+
         layoutin.setPadding(240,200,240,70);
         layout.addView(layoutin);
 
@@ -78,7 +77,7 @@ public class MainTabFragment1 extends Fragment {
             @Override
             public void onClick(View v) {
                 inputVoice(txt);
-                rippleBackground.startRippleAnimation();
+
             }
         });
         layoutin.addView(input);

@@ -110,6 +110,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                     mBitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference bbsRef=database.getReference();
+                    Context mContext = view.getContext();
+                    LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+
+                    //R.layout.dialog는 xml 파일명이고 R.id.popup은 보여줄 레이아웃 아이디
+                    View layout = inflater.inflate(R.layout.popup_activity, (ViewGroup) view.findViewById(R.id.popup));
+                    AlertDialog.Builder aDialog = new AlertDialog.Builder(view.getContext());
+                    //aDialog.setTitle("리뷰보기"); //타이틀바 제목
+
+                    rb = (RatingBar) layout.findViewById(R.id.ratingBar1);
+                    textViewName1=(TextView)layout.findViewById(R.id.text1);
+                    textViewName2=(TextView)layout.findViewById(R.id.text2);
+                    ImageView img1=(ImageView)layout.findViewById(R.id.imageView1);
+                    textViewName1.setText(title);
+                    img1.setImageBitmap(mBitmap);
+                    // if(s.equals(v)){
+                    s=upload.getContent();
                     Query query = bbsRef.child("img").orderByChild("name").equalTo(title);
                     query.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -119,6 +135,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                             content=snapshot.child("content").getValue(String.class);
                              star=snapshot.child("star").getValue(String.class);
                              st=Float.parseFloat(star);
+                                textViewName2.setText(content);
+                                rb.setRating(st);
+                                rb.setIsIndicator(true);
                             }
                         }
 
@@ -128,26 +147,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                         }
                     });
                     //view가 alert 이면 팝업실행 즉 버튼을 누르면 팝업창이 뜨는 조건
-                    Context mContext = view.getContext();
-                    LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
-                    //R.layout.dialog는 xml 파일명이고 R.id.popup은 보여줄 레이아웃 아이디
-                    View layout = inflater.inflate(R.layout.popup_activity, (ViewGroup) view.findViewById(R.id.popup));
-                    AlertDialog.Builder aDialog = new AlertDialog.Builder(view.getContext());
-                    //aDialog.setTitle("리뷰보기"); //타이틀바 제목
 
-                   rb = (RatingBar) layout.findViewById(R.id.ratingBar1);
-                    textViewName1=(TextView)layout.findViewById(R.id.text1);
-                    textViewName2=(TextView)layout.findViewById(R.id.text2);
-                    ImageView img1=(ImageView)layout.findViewById(R.id.imageView1);
-                    textViewName1.setText(title);
-                    img1.setImageBitmap(mBitmap);
-                    // if(s.equals(v)){
-                    s=upload.getContent();
 
-                    textViewName2.setText(content);
-                   rb.setRating(st);
-                   rb.setIsIndicator(true);
                     // }
                     aDialog.setView(layout); //dialog.xml 파일을 뷰로 셋팅 //그냥 닫기버튼을 위한 부분
                     aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
