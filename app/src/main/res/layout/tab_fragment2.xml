@@ -9,15 +9,21 @@
 
     >
     <LinearLayout
-            android:orientation="horizontal"
+
+            android:orientation="vertical"
             android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-        android:padding="8dp"
-          android:background="#FFFFFF">
 
+          >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="horizontal">
             <fragment
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 android:id="@+id/places_autocomplete_fragment1"
                 android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
                 android:layout_width="280dp"
@@ -25,12 +31,20 @@
                 android:layout_height="wrap_content"/>
 
             <Button
+                android:layout_marginTop="50dp"
                 android:id="@+id/add"
-                android:layout_marginTop="58dp"
+                android:layout_marginLeft="20dp"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-
-                android:background="@drawable/ikon" />
+                android:background="@drawable/pencile" />
+</LinearLayout>
+        <ImageView
+            android:layout_marginTop="130dp"
+            android:layout_gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="320dp"
+            android:orientation="vertical"
+            android:background="@drawable/bg"/>
 </LinearLayout>
 
 

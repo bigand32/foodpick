@@ -46,9 +46,10 @@ public class MainTabFragment1 extends Fragment {
         }
         LinearLayout layout = new LinearLayout(getActivity());
         layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setBackgroundResource(R.drawable.title_no);
+
         final TextView txt = new TextView(getActivity());
         txt.setBackgroundColor(Color.WHITE);
+        txt.setBackgroundResource(R.drawable.border2);
         txt.setText("\n");
 
         txt.setTextSize(15);
@@ -69,7 +70,6 @@ public class MainTabFragment1 extends Fragment {
             }
         });
         input = new Button(getActivity());
-
         input.setBackgroundResource(R.drawable.speek);
 
 

@@ -48,7 +48,8 @@
             android:layout_width="275dp"
             android:layout_height="245dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="65dp"
+
+            android:layout_gravity="center"
             android:src="@drawable/pickrr" />
 
         <TextView
