@@ -132,7 +132,8 @@ public class write extends Activity {
                 keyRef.setValue(postValues);
                 wr.setText("");
                 editText.setText("");
-
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
 
                 // startActivity(new Intent(write.this, MainTabFragment2.class));
             }

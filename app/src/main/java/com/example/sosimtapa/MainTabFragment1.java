@@ -57,7 +57,7 @@ public class MainTabFragment1 extends Fragment {
         LinearLayout layoutin=new LinearLayout((getActivity()));
         layoutin.setOrientation(LinearLayout.VERTICAL);
 
-        layoutin.setPadding(240,200,240,70);
+        layoutin.setPadding(350,200,350,50);
         layout.addView(layoutin);
 
         ScrollView scroll = new ScrollView(getActivity());
